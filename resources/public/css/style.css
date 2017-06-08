@@ -1,0 +1,16 @@
+/* some style */
+
+/* All headers */
+.handsontable th {
+    background-color:gray;
+    font-weight:bold;
+}
+/* Every odd row */
+.ht_master tr:nth-of-type(odd) > td {
+  background-color: #ffffff;
+}
+
+/* Every even row */
+.ht_master tr:nth-of-type(even) > td {
+  background-color: #ffe5e5;
+}

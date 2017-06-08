@@ -30,19 +30,7 @@
             Loading
         </div>
     </div>
-    <script type="text/javascrip">
-      function coverRenderer (instance, td, row, col, prop, value, cellProperties) {
-        var escaped = Handsontable.helper.stringify(value),
-          img;
 
-        if (escaped.indexOf('http') === 0) {
-          img = document.createElement('IMG');
-          img.src = value;
-
-          Handsontable.Dom.addEvent(img, 'mousedown', function (e){
-            e.preventDefault(); // prevent selection quirk
-      });
-    </script>
     <!-- REQUIRED JS SCRIPTS -->
     <!-- jQuery 2.2.3 -->
     <script src="admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>

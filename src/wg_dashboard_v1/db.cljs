@@ -19,7 +19,7 @@
 
 (def chart-data
   {
-   :title {:text "Depth vs. Temperature/Pressure"}
+   :title {:text "Production Chart"}
    :subtitle {:text "Source: AppSmiths.com"}
    :xAxis {:title {:text "Pressure"}}
    :yAxis {:min 0
@@ -35,13 +35,13 @@
             :borderWidth 1
             :shadow true}
    :credits {:enabled false}
-   :series [{:name "Installation"
+   :series [{:name "Production press."
              :data [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]}
-            {:name "Manufacturing"
+            {:name "Injection press."
              :data [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]}
-            {:name "Project Development"
+            {:name "Measured Outflow"
              :data ["null", "null", 7988, 12169, 15112, 22452, 34400, 34227]}
-            {:name "Other"
+            {:name "Oil Rate"
              :data [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]}]})
 
 ;;-----------Handsontable------------------------------------------------------
@@ -52,17 +52,6 @@
    :columnHeaderHeight 35
    :rowHeights 30
    :data
-          ;[["Well 1" "11/03/2015 8:00AM" 2 "Valves 1, 2 of 3 Inj" 0.402]
-          ; ["Well 3" "11/03/2015 8:00AM" 2 "Valves 2, 3 of 3 Inj" 0.503]
-          ; ["Well 5" "11/03/2015 8:00AM" 1 "Valves 1, 2 of 4 Inj" 0.908]
-          ; ["Well 2" "11/03/2015 8:00AM" 1 "Valves 3, 4 of 4 Inj" 0.749]
-          ; ["Well 9" "11/03/2015 8:00AM" 1 "Valve 2 of 3 Inj"     0.555]
-          ; ["Well 4" "11/03/2015 8:00AM" 0 "Valve 2 of 4 Inj"     0.666]
-          ; ["Well 7" "11/03/2015 8:00AM" 0 "Valves 1, 2 of 5 Inj" 0.777]
-          ; ["Well 6" "11/03/2015 8:00AM" 0 "Valves 1, 2 of 4 Inj" 0.666]
-          ; ["Well 8" "11/03/2015 8:00AM" 0 "Valves 1, 2 of 3 Inj" 0.888]
-          ; ["Well 10" "11/03/2015 8:00AM" 0 "Valves 1, 2 of 2 Inj" 0.444]
-          ; ["Well 11" "11/03/2015 8:00AM" 0 "Valves 1, 2 of 3 Inj" 0.666]]
        [{:name "Well 1" :date "11/03/2015 8:00AM" :status 2 :desciption "Valves 1, 2 of 3 Inj" :rate 0.402}
         {:name "Well 2" :date "11/03/2015 8:00AM" :status 1 :desciption "Valve 2 of 3 Inj" :rate 0.400}
         {:name "Well 3" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 1, 2 of 3 Inj" :rate 0.555}
@@ -80,7 +69,7 @@
          [
           {:data "name", :renderer "html"}
           {:data "date", :renderer "html"}
-          {:data "status", :renderer (js/imageRenderer)}
+          {:data "status", :renderer "html"}
           {:data "desciption", :renderer "html"}
           {:data "rate", :renderer "html"}]
 

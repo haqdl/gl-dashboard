@@ -35,7 +35,7 @@
              [logo]
              [nav-bar]]
             [:div {:height 100}]])
-;; -----------React-grid-layout---------------
+;; ---------------React-grid-layout---------------
 
 (def default-responsive-config
   {
@@ -53,7 +53,7 @@
 
 (defonce ResponsiveReactGridLayout (reagent/adapt-react-class (RGL.WidthProvider RGL.Responsive)))
 
-;;----------------chart---------------------------
+;;------------------chart---------------------------
 
 (def chart-state (atom {}))
 
@@ -62,13 +62,13 @@
 
 (defn home-render []
   [:div {:style {:min-width "310px" :max-width "800px"
-                 :height "400px" :margin "0 auto"}}])
+                 :height "500px" :margin "0 auto"}}])
 
 (defn chart-display [this]
   (reagent/create-class {:reagent-render
                          (fn []
                            [:div {:style {:min-width "300px" :max-width "800px"
-                                               :height "400px" :margin "0 auto"}}])
+                                               :height "500px" :margin "0 auto"}}])
                          :component-did-mount
                          (fn [this]
                            (js/Highcharts.Chart. (reagent/dom-node this)
@@ -99,14 +99,13 @@
         data))
 
 
-
-
 (defn table-display []
   (reagent/create-class {:reagent-render
                            (fn []
                              [:div {:style {:min-width "300px" :max-width "800px"
-                                            :height "400px" :margin "0 auto"}}])
+                                            :height "500px" :margin "0 auto"}}])
                          :component-did-mount
+
                            (fn [this]
                               (js/Handsontable (reagent/dom-node this)
                                                (clj->js (test-table-config db/table-data))))}))
@@ -135,12 +134,15 @@
       ;[:div
       [ResponsiveReactGridLayout  default-responsive-config
         [:div
-         {:key "2" :data-grid {:i "table" :x 0 :y 1 :w 4 :h 4 :minH 1 :minW 1}}
-         [table-display]]
+         {:key "2" :data-grid {:i "table" :x 0 :y 0 :w 4 :h 4 :minH 1 :minW 1}}
+         [:div {:style {:height 50 :text-align "center" :font-weight "600" :font-size "large"}} "Wells Summary"]
+         [table-display]
+         [:div "GL Status: 0: Normal   1: Warning  2: Critical"]]
          ;[WellTable db/well-data]]
         [:div
-         {:key "3" :data-grid {:i "chart" :x 4 :y 1 :w 6 :h 4 :minH 1 :minW 3}}
+         {:key "3" :data-grid {:i "chart" :x 5 :y 0 :w 8 :h 4 :minH 1 :minW 3}}
          [chart-display]]])
+
 ;;---------------------------------------------------------
 
 (defn home-page []

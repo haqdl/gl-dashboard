@@ -41,8 +41,7 @@
                            :output-to "resources/public/js/compiled/wg_dashboard_v1.js"
                            :output-dir "resources/public/js/compiled/out"
                            :source-map-timestamp true
-                           :externs ["src/js/externs.js"
-                                     "datatables.ext.js"]
+                           :externs ["src/js/externs.js"]
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
                            :preloads [devtools.preload]}}

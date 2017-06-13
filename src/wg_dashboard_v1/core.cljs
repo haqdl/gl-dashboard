@@ -1,8 +1,6 @@
 (ns wg-dashboard-v1.core
   (:require [reagent.core :as reagent :refer [atom]]
-            [wg-dashboard-v1.db :as db]
-            [wg-dashboard-v1.datatable :refer [DataTable]]))
-
+            [wg-dashboard-v1.db :as db]))
 
 (enable-console-print!)
 
@@ -31,10 +29,10 @@
       [:ul.nav.navbar-nav]]]))
 
 (defn main-header []
-      [:div [:header.main-header
-             [logo]
-             [nav-bar]]
-            [:div {:height 100}]])
+     [:header.main-header
+        [logo]
+        [nav-bar]])
+       ;[:div {:height 100}]])
 ;; ---------------React-grid-layout---------------
 
 (def default-responsive-config
@@ -44,7 +42,7 @@
    :breakpoints {:lg 1200 :md 996 :sm 768 :xs 480 :xxs 0}
    :rowHeight 100
    :isResizable true
-   :style {:background-color "white"}
+   :style {:background-color "grey"}
    :onResizeStop #(.dispatchEvent js/window (js/Event. "resize"))})
 
 (defonce RGL (aget js/window "deps" "rgl"))
@@ -62,13 +60,13 @@
 
 (defn home-render []
   [:div {:style {:min-width "310px" :max-width "800px"
-                 :height "500px" :margin "0 auto"}}])
+                 :height "800px" :margin "0 auto"}}])
 
 (defn chart-display [this]
   (reagent/create-class {:reagent-render
                          (fn []
                            [:div {:style {:min-width "300px" :max-width "800px"
-                                               :height "500px" :margin "0 auto"}}])
+                                          :height "500px" :margin "0 auto"}}])
                          :component-did-mount
                          (fn [this]
                            (js/Highcharts.Chart. (reagent/dom-node this)
@@ -99,49 +97,44 @@
         data))
 
 
-(defn table-display []
+(defn well-table-display []
   (reagent/create-class {:reagent-render
                            (fn []
-                             [:div {:style {:min-width "300px" :max-width "800px"
-                                            :height "500px" :margin "0 auto"}}])
+                             [:div
+                              {:style {:min-width "300px" :max-width "800px"
+                                       :height "500px" :overflow "hidden" :margin "0 auto"}}])
                          :component-did-mount
-
                            (fn [this]
                               (js/Handsontable (reagent/dom-node this)
                                                (clj->js (test-table-config db/table-data))))}))
-                                               ;(.AddEvent (-.Dom js/Handsontable) img "mousedown" (fn [e] (.preventDefault e)))))}))
+                              ;(.AddEvent (js/windows  "img" "mousedown" (fn [e] (.log "fired")))))}))
 
-;;-------Well table--------------------------------------------------
-(defn WellTable [data-source]
-  (fn [data-source]
-      [:table.table {:style {:margin-bottom "0px"}}
-       [:thead
-        [:tr
-         [:th "Well"]
-         [:th "Diagnostic Date"]
-         [:th "GL Status"]
-         [:th "GL Valves Status"]
-         [:th "GLIR Calculated"]]]
-       [:tbody
-        [:tr
-         [:td 1]
-         [:td 1]
-         [:td 1]
-         [:td 1]
-         [:td 1]]]]))
+(defn welltest-table-display []
+  (reagent/create-class {:reagent-render
+                         (fn []
+                           [:div
+                            {:style {:min-width "300px" :max-width "800px"
+                                     :height    "500px" :overflow "hidden" :margin "0 auto"}}])
+                         :component-did-mount
+                         (fn [this]
+                           (js/Handsontable (reagent/dom-node this)
+                                            (clj->js (test-table-config db/welltest-table))))}))
 ;;------------------------------------------------------------------------
 (defn main-content []
       ;[:div
       [ResponsiveReactGridLayout  default-responsive-config
         [:div
-         {:key "2" :data-grid {:i "table" :x 0 :y 0 :w 4 :h 4 :minH 1 :minW 1}}
+         {:key "2" :data-grid {:i "well" :x 0 :y 0 :w 2 :h 4 :minH 1 :minW 1}}
          [:div {:style {:height 50 :text-align "center" :font-weight "600" :font-size "large"}} "Wells Summary"]
-         [table-display]
-         [:div "GL Status: 0: Normal   1: Warning  2: Critical"]]
-         ;[WellTable db/well-data]]
+         [well-table-display]]
         [:div
-         {:key "3" :data-grid {:i "chart" :x 5 :y 0 :w 8 :h 4 :minH 1 :minW 3}}
-         [chart-display]]])
+         {:key "3" :data-grid {:i "chart" :x 5 :y 0 :w 6 :h 4 :minH 1 :minW 3}}
+         [chart-display]]
+        [:div
+         {:key "4" :data-grid {:i "welltest" :x 0 :y 3 :w 6 :h 2 :minH 1 :minW 1}}
+         [:div {:style {:height 50 :text-align "center" :font-weight "600" :font-size "large"}} "Well Test History"]
+         [welltest-table-display]]])
+
 
 ;;---------------------------------------------------------
 
@@ -149,7 +142,6 @@
       [:div
        [main-header]
        [main-content]])
-
 
 
 (defn mount-root []

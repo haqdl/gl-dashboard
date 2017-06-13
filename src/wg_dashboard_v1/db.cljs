@@ -36,7 +36,7 @@
             :shadow true}
    :credits {:enabled false}
    :series [{:name "Production press."
-             :data [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]}
+             :data [4394, 5250, 5777, 6965, 9703, 11931, 13133, 24175]}
             {:name "Injection press."
              :data [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]}
             {:name "Measured Outflow"
@@ -50,7 +50,9 @@
    :colHeaders ["Well" "Diagnostic Date" "GL Status" "GL Valves Status" "GLIR Calculated"]
    :columnSorting true
    :columnHeaderHeight 35
-   :rowHeights 30
+   :rowHeights 25
+   :width 500
+   :manualColumnResize true
    :data
        [{:name "Well 1" :date "11/03/2015 8:00AM" :status 2 :desciption "Valves 1, 2 of 3 Inj" :rate 0.402}
         {:name "Well 2" :date "11/03/2015 8:00AM" :status 1 :desciption "Valve 2 of 3 Inj" :rate 0.400}
@@ -66,18 +68,19 @@
         {:name "Well 12" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 1, 2 of 3 Inj" :rate 0.345}]
 
    :columns
-         [
-          {:data "name", :renderer "html"}
-          {:data "date", :renderer "html"}
-          {:data "status", :renderer "html"}
-          {:data "desciption", :renderer "html"}
-          {:data "rate", :renderer "html"}]
+       [
+        {:data "name" :renderer "html"}
+        {:data "date" :renderer "html"}
+        {:data "status" :renderer (fn [instance td row col prop value cellProperties]
+                                      (js/imageRenderer instance td row col prop value cellProperties))}
 
+        {:data "desciption" :renderer "html"}
+        {:data "rate" :renderer "html"}]
 
+   :editor false
    :rowHeaders  false
    :contextMenu false
    :autoWrapRow true})
-
 
 (def well-data
   [{:name "Well 1" :date "11/03/2015 8:00AM" :status 2 :desciption "Valves 1, 2 of 3 Inj" :rate 0.402}
@@ -93,5 +96,35 @@
    {:name "Well 11" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 1, 2 of 3 Inj" :rate 0.788}
    {:name "Well 12" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 1, 2 of 3 Inj" :rate 0.345}])
 
+(def welltest-table
+     {
+      :colHeaders ["Date" "Oil Rate" "Water Rate" "Form. Gas" "LG Rate" "Prod. Press" "Inj. Press" "Choke" "Sep. Press"]
+      :columnSorting true
+      :columnHeaderHeight 35
+      :rowHeights 25
+      :width 800
+      :manualColumnResize true
+      :data
+          [
+           {:date "12-Oct-1994 00:00:00" :oil-rate 19.08  :water-rate 94.48  :form-gas 2265.35  :lg-rate 14158.4  :prod-press 689  :inj-press 5378  :choke 25.4  :sep-press 689}
+           {:date "13-Oct-1994 00:00:00" :oil-rate 19.08  :water-rate 94.48  :form-gas 2265.35  :lg-rate 14158.4  :prod-press 689  :inj-press 5378  :choke 25.4  :sep-press 689}
+           {:date "14-Oct-1994 00:00:00" :oil-rate 19.08  :water-rate 94.48  :form-gas 2265.35  :lg-rate 14158.4  :prod-press 689  :inj-press 5378  :choke 25.4  :sep-press 689}
+           {:date "15-Oct-1994 00:00:00" :oil-rate 19.08  :water-rate 94.48  :form-gas 2265.35  :lg-rate 14158.4  :prod-press 689  :inj-press 5378  :choke 25.4  :sep-press 689}
+           {:date "16-Oct-1994 00:00:00" :oil-rate 19.08  :water-rate 94.48  :form-gas 2265.35  :lg-rate 14158.4  :prod-press 689  :inj-press 5378  :choke 25.4  :sep-press 689}
+           {:date "17-Oct-1994 00:00:00" :oil-rate 19.08  :water-rate 94.48  :form-gas 2265.35  :lg-rate 14158.4  :prod-press 689  :inj-press 5378  :choke 25.4  :sep-press 689}]
+      :columns
+          [
+           {:data "date" :type "date" :renderer "html"}
+           {:data "oil-rate" :type "numeric" :renderer "html"}
+           {:data "water-rate" :type "numeric"  :renderer "html"}
+           {:data "form-gas" :renderer "html"}
+           {:data "lg-rate" :renderer "html"}
+           {:data "prod-press" :renderer "html"}
+           {:data "inj-press" :renderer "html"}
+           {:data "choke" :renderer "html"}
+           {:data "sep-press" :renderer "html"}]
 
-
+      :editor false
+      :rowHeaders  false
+      :contextMenu false
+      :autoWrapRow true})

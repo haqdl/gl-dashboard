@@ -18,7 +18,8 @@
 
 
   :plugins [[lein-figwheel "0.5.10"]
-            [lein-cljsbuild "1.1.5" :exclusions [[org.clojure/clojure]]]]
+            [lein-cljsbuild "1.1.5" :exclusions [[org.clojure/clojure]]]
+            [lein-ring "0.12.0"]]
 
   :source-paths ["src"]
 
@@ -41,7 +42,8 @@
                            :output-to "resources/public/js/compiled/wg_dashboard_v1.js"
                            :output-dir "resources/public/js/compiled/out"
                            :source-map-timestamp true
-                           :externs ["src/js/externs.js"]
+                           :externs ["src/js/externs.js"
+                                     "src/js/datatable.ext.js"]
                            ;; To console.log CLJS data-structures make sure you enable devtools in Chrome
                            ;; https://github.com/binaryage/cljs-devtools
                            :preloads [devtools.preload]}}
@@ -53,7 +55,9 @@
                 :compiler {:output-to "resources/public/js/compiled/wg_dashboard_v1.js"
                            :main wg-dashboard-v1.core
                            :optimizations :advanced
-                           :pretty-print false}}]}
+                           :pretty-print false
+                           :externs ["src/js/externs.js"
+                                     "src/js/datatable.ext.js"]}}]}
 
   :figwheel {;; :http-server-root "public" ;; default and assumes "resources"
               :server-port 4449 ;; default
@@ -93,8 +97,8 @@
              ;; to pipe all the output to the repl
              ;; :server-logfile false
 
-
-
+  :hooks [leiningen.cljsbuild]
+  ;:main wg-dashboard-v1.core
   ;; setting up nREPL for Figwheel and ClojureScript dev
   ;; Please see:
   ;; https://github.com/bhauman/lein-figwheel/wiki/Using-the-Figwheel-REPL-within-NRepl
@@ -108,4 +112,11 @@
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
                    ;; need to add the compliled assets to the :clean-targets
                    :clean-targets ^{:protect false} ["resources/public/js/compiled"
-                                                     :target-path]}})
+                                                     :target-path]}
+             :uberjar {:aot :all
+                        :cljsbuild {:builds [{:source-paths ["src"]
+                                              :compiler {:output-to "resources/public/js/compiled/wg_dashboard_v1.js"
+                                                         :optimizations :simple
+                                                         :pretty-print false}}]}}})
+
+

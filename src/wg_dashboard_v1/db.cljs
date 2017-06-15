@@ -78,23 +78,23 @@
         {:data "rate" :renderer "html"}]
 
    :editor false
-   :rowHeaders  false
+   :rowHeaders  true
    :contextMenu false
    :autoWrapRow true})
 
 (def well-data
-  [{:name "Well 1" :date "11/03/2015 8:00AM" :status 2 :desciption "Valves 1, 2 of 3 Inj" :rate 0.402}
-   {:name "Well 2" :date "11/03/2015 8:00AM" :status 1 :desciption "Valve 2 of 3 Inj" :rate 0.400}
-   {:name "Well 3" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 1, 2 of 3 Inj" :rate 0.555}
-   {:name "Well 4" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 3,4 of 4 Inj" :rate 0.444}
-   {:name "Well 5" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 1 of 3 Inj" :rate 0.666}
-   {:name "Well 6" :date "11/03/2015 8:00AM" :status 1 :desciption "Valves 2,3 of 4 Inj" :rate 0.333}
-   {:name "Well 7" :date "11/03/2015 8:00AM" :status 2 :desciption "Valves 1 of 4 Inj" :rate 0.404}
-   {:name "Well 8" :date "11/03/2015 8:00AM" :status 1 :desciption "Valves 1, 2 of 3 Inj" :rate 0.606}
-   {:name "Well 9" :date "11/03/2015 8:00AM" :status 1 :desciption "Valves 2, 3 of 3 Inj" :rate 0.777}
-   {:name "Well 10" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 2,3  of 4 Inj" :rate 0.555}
-   {:name "Well 11" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 1, 2 of 3 Inj" :rate 0.788}
-   {:name "Well 12" :date "11/03/2015 8:00AM" :status 0 :desciption "Valves 1, 2 of 3 Inj" :rate 0.345}])
+  [{:name "Well 1" :date "11/03/2015 8:00AM" :status "<img src = '/images/r.png' />" :desciption "Valves 1, 2 of 3 Inj" :rate 0.402}
+   {:name "Well 2" :date "11/03/2015 8:00AM" :status "<img src = '/images/r.png' />" :desciption "Valve 2 of 3 Inj" :rate 0.400}
+   {:name "Well 3" :date "11/03/2015 8:00AM" :status "<img src = '/images/y.png' />" :desciption "Valves 1, 2 of 3 Inj" :rate 0.555}
+   {:name "Well 4" :date "11/03/2015 8:00AM" :status "<img src = '/images/y.png' />" :desciption "Valves 3,4 of 4 Inj" :rate 0.444}
+   {:name "Well 5" :date "11/03/2015 8:00AM" :status "<img src = '/images/y.png' />" :desciption "Valves 1 of 3 Inj" :rate 0.666}
+   {:name "Well 6" :date "11/03/2015 8:00AM" :status "<img src = '/images/b.png' />" :desciption "Valves 2,3 of 4 Inj" :rate 0.333}
+   {:name "Well 7" :date "11/03/2015 8:00AM" :status "<img src = '/images/b.png' />" :desciption "Valves 1 of 4 Inj" :rate 0.404}
+   {:name "Well 8" :date "11/03/2015 8:00AM" :status "<img src = '/images/b.png' />" :desciption "Valves 1, 2 of 3 Inj" :rate 0.606}
+   {:name "Well 9" :date "11/03/2015 8:00AM" :status "<img src = '/images/b.png' />" :desciption "Valves 2, 3 of 3 Inj" :rate 0.777}
+   {:name "Well 10" :date "11/03/2015 8:00AM" :status "<img src = '/images/b.png' />" :desciption "Valves 2,3  of 4 Inj" :rate 0.555}
+   {:name "Well 11" :date "11/03/2015 8:00AM" :status "<img src = '/images/b.png' />" :desciption "Valves 1, 2 of 3 Inj" :rate 0.788}
+   {:name "Well 12" :date "11/03/2015 8:00AM" :status "<img src = '/images/b.png' />" :desciption "Valves 1, 2 of 3 Inj" :rate 0.345}])
 
 (def welltest-table
      {

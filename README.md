@@ -30,9 +30,19 @@ To create a production build run:
     lein do clean, cljsbuild once min
 
 And open your browser in `resources/public/index.html`. You will not
-get live reloading, nor a REPL. 
+get live reloading, nor a REPL.
 
-## License
+#deploy
+Using http-kit server
+
+Run
+   lein clean
+   lein uberjar
+Start with java:
+    java -jar arget/wg-dashboard-v1-0.1.0-SNAPSHOT-standalone.jar
+
+Server will starting server on port: 8000. To change port: goto master.clj/main
+# License
 
 Copyright © 2014 FIXME
 

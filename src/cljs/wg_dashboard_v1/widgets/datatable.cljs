@@ -1,4 +1,4 @@
-(ns wg-dashboard-v1.datatable
+(ns wg_dashboard_v1.widgets.datatable
   (:require [reagent.core :as reagent]))
 
 (defn- setup-table [table-node options]
